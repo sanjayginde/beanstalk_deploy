@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require "bundler/setup"
+require "beanstalk_deploy"
+
+cli = BeanstalkDeploy::CLI.start(ARGV)
