@@ -6,9 +6,12 @@ module BeanstalkDeploy
 
     desc "status ENVIRONMENT_NAME", "Check status for an environment"
     def status(environment_name)
-      deploy_env = Application.new(application_name).environment(environment_name)
-      command = Command::Status.new(deploy_env, printer)
-      command.execute
+      Command::Status.new(environment(environment_name), printer).execute
+    end
+
+    desc "ssh ENVIRONMENT_NAME", "SSH to a box in an environment"
+    def ssh(environment_name)
+      Command::SSH.new(environment(environment_name), printer).execute
     end
 
     no_commands do
@@ -18,6 +21,14 @@ module BeanstalkDeploy
 
       def verbose?
         options[:verbose]
+      end
+
+      def environment(environment_name)
+        application.environment(environment_name)
+      end
+
+      def application
+        @application ||= Application.new(application_name)
       end
 
       def application_name

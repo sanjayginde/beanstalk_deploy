@@ -9,6 +9,7 @@ module BeanstalkDeploy
   require "beanstalk_deploy/environment"
   require "beanstalk_deploy/instance"
   require "beanstalk_deploy/printer"
+  require "beanstalk_deploy/command/ssh"
   require "beanstalk_deploy/command/status"
   require "beanstalk_deploy/cli"
 end
